@@ -1,0 +1,20 @@
+/vendor
+composer.lock
+composer.phar
+node_modules/
+vendor/
+package-lock.json
+
+.DS_Store
+Thumbs.db
+tests/.phpunit.cache
+tests/.phpunit.result.cache
+/tests/integration/tmp
+.vagrant
+.idea/*
+.vscode
+js/coverage-ts
+
+# PHP CS Fixer configuration
+/.php-cs-fixer.cache
+/.php-cs-fixer.php

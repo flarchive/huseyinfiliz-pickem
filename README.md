@@ -1,0 +1,165 @@
+![](https://i.ibb.co/5XYr4Lx7/pickem.gif)
+
+![License](https://img.shields.io/badge/license-MIT-blue.svg) [![Latest Stable Version](https://img.shields.io/packagist/v/huseyinfiliz/pickem.svg)](https://packagist.org/packages/huseyinfiliz/pickem) [![Total Downloads](https://img.shields.io/packagist/dt/huseyinfiliz/pickem.svg)](https://packagist.org/packages/huseyinfiliz/pickem)
+
+# Pick'em
+A comprehensive sports prediction game extension for [Flarum](https://flarum.org) forums. Engage your community by allowing users to predict match outcomes, compete on a global leaderboard, and track their statistics.
+
+**Credits:** This extension sponsored by [@ernestdefoe ](https://discuss.flarum.org/u/ernestdefoe)& [@KBExit ](https://discuss.flarum.org/u/KBExit)✨
+
+### ⚽ Matches & Predictions
+![Matches Demo](https://i.ibb.co/FkqKT9zJ/image.png)
+
+### 🏆 Leaderboard System
+![Leaderboard Demo](https://i.ibb.co/WWpWKGpv/image.png)
+
+### 📝 My Picks Dashboard
+![My Picks Demo](https://i.ibb.co/qMGPk3kC/image.png)
+
+### ⚙️ Admin Management
+![Admin Demo](https://i.ibb.co/1wf6mb4/image.png)
+
+## Compatibility
+
+The `2.x` branch requires **Flarum 2.0.2+** and **PHP 8.3+** and is tested against Flarum **2.0.2**.
+Flarum 1.x releases are maintained separately on the `1.x` branch.
+
+When upgrading a forum from Flarum 1 to Flarum 2, keep the existing Pick'em database tables;
+teams, seasons, weeks, matches, picks and scores use the same schema.
+Run `php flarum migrate` and `php flarum cache:clear` after updating.
+
+Result scoring and notifications use Flarum's queue. With the database queue enabled,
+keep the forum's queue worker running so results appear in the leaderboard.
+
+### Development checks
+
+```sh
+composer install
+composer test:setup
+composer test
+composer cs
+```
+
+The integration tests use a separate SQLite database by default.
+Build the frontend from `js/` with `yarn install`, `yarn build` and `yarn check-typings`.
+
+## Features
+
+- 🎯 **Match Predictions**: Users can predict Home Win, Away Win, or Draw results
+- 🏆 **Leaderboard**: Automatic global ranking system based on correct predictions
+- 📊 **User Statistics**: Track accuracy rates, total points, and correct pick counts
+- ⚡ **Live Status**: Real-time match status (Scheduled, Closed, Finished)
+- ⏰ **Cutoff Control**: Automatic locking of picks when the match start time is reached
+- 📱 **Responsive Design**: Fully optimized card-based layout for mobile devices
+- 🔔 **Notifications**: Users receive alerts when match results are announced
+- 🛡️ **Admin Panel**: Complete management system for Teams, Seasons, Weeks, and Events
+- 🖼️ **Team Logos**: Visual team identity with logo support (URL or Upload)
+
+### Installation
+
+```bash
+composer require huseyinfiliz/pickem
+```
+
+You can also install with Extension Manager: `huseyinfiliz/pickem`
+
+### Updating
+
+```sh
+composer update huseyinfiliz/pickem
+```
+
+To remove simply run `composer remove huseyinfiliz/pickem`
+
+## Quick Start
+
+### For Users
+
+1.  Navigate to the **Pick'em** page from the sidebar
+2.  Browse the **Matches** tab to see upcoming events
+3.  Click on **Home**, **Draw**, or **Away** buttons to make your prediction
+4.  Visit **My Picks** to track your history and **Leaderboard** to see your ranking
+
+### For Admins
+
+Navigate to **Admin → Pick'em** to configure the system. The admin panel is divided into tabs for easy management:
+
+#### Teams Tab
+
+  - Create teams with **Name**, **Slug**, and **Logo**
+  - Supports direct image upload (requires FoF Upload) or external image URLs
+
+#### Seasons Tab
+
+  - Create seasons (e.g., "2024-2025 Season")
+  - Define start and end dates for organizational purposes
+
+#### Weeks Tab
+
+  - Group matches into weeks (e.g., "Week 1", "Playoffs")
+  - Link weeks to specific seasons
+
+#### Matches Tab
+
+  - Create matches by selecting Home and Away teams
+  - **Match Date**: When the game actually starts
+  - **Cutoff Date**: The deadline for users to make picks (usually match start time)
+  - **Allow Draw**: Toggle whether a "Draw" option is available for prediction
+  - **Status**: Manually manage statuses (Scheduled, Closed, Finished)
+  - **Enter Results**: Input scores after the match to automatically calculate points
+
+#### Settings Tab
+
+  - **Recalculate Scores**: A utility tool to recalculate all user scores and rankings from scratch if needed
+
+### 🎯 Use Cases
+
+#### Sports Communities
+
+  - Football/Soccer leagues (Premier League, La Liga, etc.)
+  - Basketball tournaments (NBA, EuroLeague)
+  - Weekly NFL pick'em pools
+
+#### E-Sports Forums
+
+  - Tournament prediction brackets for games like LoL, CS:GO, or Valorant
+  - Team performance tracking
+
+### TV & Events
+
+  - Reality show elimination predictions
+  - Award show winners (Oscars, Grammys) pools
+
+### 🔧 Advanced Details
+
+#### Scoring System
+
+  - **Points**: Users earn **1 point** for every correct prediction.
+  - **Accuracy**: Calculated as `(Correct Picks / Total Picks) * 100`.
+  - **Ranking**: The leaderboard is sorted by Total Points (primary) and Correct Pick count (secondary).
+
+#### Permissions
+
+You can configure permissions via the Flarum Permission grid:
+
+  - **Manage pick'em system**: Allows full access to the admin panel (create/edit/delete data).
+  - **Make picks**: Allows users to participate in the game.
+  - **View Pick'em page**: Controls visibility of the extension page.
+
+#### Automated Logic
+
+  - **Result Calculation**: When an admin enters the score, the system automatically determines the winner (Home/Away/Draw).
+  - **Status Updates**: Matches are automatically marked as "Finished" when results are saved.
+  - **Notifications**: Users who predicted a match receive a notification when the result is entered.
+
+#### 🌍 Translations
+
+This extension comes with English translations. Community translations are welcome!
+[![Translate](https://weblate.rob006.net/widgets/flarum/-/huseyinfiliz-pickem/multi-auto.svg)](https://weblate.rob006.net/projects/flarum/huseyinfiliz-pickem/)
+
+#### 💖 Support & Contributing
+
+If you find this extension useful, consider:
+
+  - ⭐ Starring the repository on GitHub
+  - 💬 Leaving feedback on the [Flarum discussion](https://discuss.flarum.org/d/38433-pickem-match-prediction-extension)
